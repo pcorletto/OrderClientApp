@@ -14,7 +14,7 @@ import android.widget.EditText;
 
 public class RegistrationActivity extends ActionBarActivity {
 
-    // Private member variables
+    // Private member variables...
     private EditText mUsernameEdTxt, mPasswordEdTxt, mEmailEdTxt, mFirstnameEdTxt,
     mLastnameEdTxt, mAddressEdTxt, mCityEdTxt, mStateEdTxt, mZipcodeEdTxt, mTelephoneEdTxt,
     mMobileEdTxt;
