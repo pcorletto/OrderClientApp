@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">OrderClientApp</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="main_activity_title">Welcome to Corletto Store!</string>
+    <string name="new_customer_lbl">New Customer?</string>
+    <string name="register_button_lbl">Register</string>
+    <string name="returning_customer_lbl">Already a Customer?</string>
+    <string name="login_button_lbl">Login</string>
+    <string name="logout_button_lbl">Logout</string>
+    <string name="store_catalog_button_lbl">Store Catalog</string>
+    <string name="my_orders_button_lbl">My Orders</string>
+    <string name="title_activity_registration">RegistrationActivity</string>
+    <string name="registration_activity_title">New Client Registration</string>
+    <string name="username">User Name:</string>
+    <string name="password">Password:</string>
+    <string name="email">E-Mail:</string>
+    <string name="firstname">First Name:</string>
+    <string name="lastname">Last Name:</string>
+    <string name="address">Street Address:</string>
+    <string name="city">Town or City:</string>
+    <string name="state">State:</string>
+    <string name="zipcode">Zip Code:</string>
+    <string name="telephone">Home Phone:</string>
+    <string name="mobile">Cell Phone:</string>
+    <string name="title_activity_background_task">BackgroundTask</string>
+    <string name="empty_edittext_alert">Please enter info!!</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="welcome">Welcome!</string>
+    <string name="login_name">login_name</string>
+    <string name="login_pass">login_pass</string>
+    <string name="title_activity_profile">ProfileActivity</string>
+    <string name="login_tracker">login_tracker</string>
+    <string name="userlogin">userlogin</string>
+
+</resources>
