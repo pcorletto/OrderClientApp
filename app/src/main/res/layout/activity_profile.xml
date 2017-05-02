@@ -9,7 +9,7 @@
             tools:context="com.example.android.orderclientapp.ProfileActivity">
 
 <RelativeLayout android:layout_width="match_parent"
-                    android:layout_height="match_parent" >
+                    android:layout_height="wrap_content" >
 
     <TextView
         android:layout_width="match_parent"
@@ -224,10 +224,17 @@
 
     </LinearLayout>
 
-    <Button
+   <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/layout9"
+        android:text="@string/update_btn_prompt"
+        android:id="@+id/update_btn"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/update_btn"
         android:text="@string/logout_button_lbl"
         android:id="@+id/logout_btn"
         android:layout_alignParentBottom="true"

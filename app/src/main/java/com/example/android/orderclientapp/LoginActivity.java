@@ -37,7 +37,7 @@ public class LoginActivity extends ActionBarActivity {
         SM = getSharedPreferences(getString(R.string.login_tracker), 0);
         Boolean is_logged_in = SM.getBoolean(getString(R.string.userlogin), false);
         if(is_logged_in){
-            Intent intent = new Intent(LoginActivity.this, ProfileActivity.class);
+            Intent intent = new Intent(LoginActivity.this, DashboardActivity.class);
             startActivity(intent);
             finish();
             return;

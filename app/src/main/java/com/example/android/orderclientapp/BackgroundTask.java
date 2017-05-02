@@ -40,6 +40,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
     protected String doInBackground(String... params) {
         String reg_url = "http://corlettostore.000webhostapp.com/register.php";
         String login_url = "http://corlettostore.000webhostapp.com/login.php";
+        String update_url = "http://corlettostore.000webhostapp.com/update.php";
         String method = params[0];
         if (method.equals("register")) {
             String username = params[1];
@@ -88,6 +89,53 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+
+        else if (method.equals("update")) {
+            String username = params[1];
+            String firstname = params[2];
+            String lastname = params[3];
+            String email = params[4];
+            String address = params[5];
+            String city = params[6];
+            String state = params[7];
+            String zipcode = params[8];
+            String telephone = params[9];
+            String mobile = params[10];
+
+            try {
+                URL url = new URL(update_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                httpURLConnection.setRequestMethod("POST");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);//
+                OutputStream OS = httpURLConnection.getOutputStream();
+                BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(OS, "UTF-8"));
+                String data = URLEncoder.encode("username", "UTF-8") + "=" + URLEncoder.encode(username, "UTF-8") + "&" +
+                        URLEncoder.encode("firstname", "UTF-8") + "=" + URLEncoder.encode(firstname, "UTF-8") + "&" +
+                        URLEncoder.encode("lastname", "UTF-8") + "=" + URLEncoder.encode(lastname, "UTF-8") + "&" +
+                        URLEncoder.encode("email", "UTF-8") + "=" + URLEncoder.encode(email, "UTF-8") + "&" +
+                        URLEncoder.encode("address", "UTF-8") + "=" + URLEncoder.encode(address, "UTF-8") + "&" +
+                        URLEncoder.encode("city", "UTF-8") + "=" + URLEncoder.encode(city, "UTF-8") + "&" +
+                        URLEncoder.encode("state", "UTF-8") + "=" + URLEncoder.encode(state, "UTF-8") + "&" +
+                        URLEncoder.encode("zipcode", "UTF-8") + "=" + URLEncoder.encode(zipcode, "UTF-8") + "&" +
+                        URLEncoder.encode("telephone", "UTF-8") + "=" + URLEncoder.encode(telephone, "UTF-8") + "&" +
+                        URLEncoder.encode("mobile", "UTF-8") + "=" + URLEncoder.encode(mobile, "UTF-8");
+                bufferedWriter.write(data);
+                bufferedWriter.flush();
+                bufferedWriter.close();
+                OS.close();
+                InputStream IS = httpURLConnection.getInputStream();
+                IS.close();
+                //httpURLConnection.connect();
+                httpURLConnection.disconnect();
+                return "Update Success...";
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
         else if(method.equals("login"))
         {
             String username = params[1];
@@ -190,7 +238,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             10: Home phone, 11: Cell phone
              */
 
-            Intent intent = new Intent(ctx, ProfileActivity.class);
+            //Intent intent = new Intent(ctx, ProfileActivity.class);
+            Intent intent = new Intent(ctx, DashboardActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             ctx.startActivity(intent);
 

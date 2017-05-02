@@ -34,5 +34,11 @@
     <string name="title_activity_profile">ProfileActivity</string>
     <string name="login_tracker">login_tracker</string>
     <string name="userlogin">userlogin</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="logged_in_as_prompt">Logged in as:</string>
+    <string name="profile_prompt">Profile</string>
+    <string name="catalog_prompt">Catalog</string>
+    <string name="update_btn_prompt">Update</string>
+    <string name="userno_prompt">User No.:</string>
 
 </resources>
