@@ -30,6 +30,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     public static String[] dbFields;
 
+    String method;
+
 
     @Override
     protected void onPreExecute() {
@@ -41,7 +43,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         String reg_url = "http://corlettostore.000webhostapp.com/register.php";
         String login_url = "http://corlettostore.000webhostapp.com/login.php";
         String update_url = "http://corlettostore.000webhostapp.com/update.php";
-        String method = params[0];
+        method = params[0];
         if (method.equals("register")) {
             String username = params[1];
             String password = params[2];
@@ -238,10 +240,13 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             10: Home phone, 11: Cell phone
              */
 
-            //Intent intent = new Intent(ctx, ProfileActivity.class);
-            Intent intent = new Intent(ctx, DashboardActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            ctx.startActivity(intent);
+            if(method.equals("login")) {
+
+                Intent intent = new Intent(ctx, DashboardActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                ctx.startActivity(intent);
+
+            }
 
         }
     }

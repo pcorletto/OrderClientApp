@@ -27,6 +27,7 @@ public class ProfileActivity extends ActionBarActivity {
             mCity, mState, mZipcode, mTelephone, mMobile;
 
     private Button mLogoutButton, update_btn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -298,11 +299,6 @@ public class ProfileActivity extends ActionBarActivity {
                 BackgroundTask backgroundTask = new BackgroundTask(getApplicationContext());
                 backgroundTask.execute(method, mUsername, mFirstname, mLastname, mEmail,
                         mAddress, mCity, mState, mZipcode, mTelephone, mMobile);
-
-                SharedPreferences SM = getSharedPreferences(getString(R.string.login_tracker), 0);
-                SharedPreferences.Editor edit = SM.edit();
-                edit.putBoolean(getString(R.string.userlogin), false);
-                edit.commit();
 
                 Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
                 startActivity(intent);

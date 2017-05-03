@@ -1,5 +1,6 @@
 package com.example.android.orderclientapp;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
@@ -143,8 +144,9 @@ public class RegistrationActivity extends ActionBarActivity {
                 BackgroundTask backgroundTask = new BackgroundTask(getApplicationContext());
                 backgroundTask.execute(method, mUsername, mPassword, mFirstname, mLastname, mEmail,
                         mAddress, mCity, mState, mZipcode, mTelephone, mMobile);
-                finish();
 
+                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                startActivity(intent);
             }
         });
 

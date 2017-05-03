@@ -13,7 +13,7 @@ import android.widget.EditText;
 
 public class DashboardActivity extends ActionBarActivity {
 
-    private EditText loginEditText, usernoEditText;
+    private EditText loginEditText;
 
     private Button profileButton, catalogButton, logout_btn;
 
@@ -24,8 +24,6 @@ public class DashboardActivity extends ActionBarActivity {
 
         loginEditText = (EditText) findViewById(R.id.loginEditText);
 
-        usernoEditText = (EditText) findViewById(R.id.usernoEditText);
-
         profileButton = (Button) findViewById(R.id.profileButton);
 
         catalogButton = (Button) findViewById(R.id.catalogButton);
@@ -34,7 +32,6 @@ public class DashboardActivity extends ActionBarActivity {
 
         loginEditText.setText(BackgroundTask.dbFields[1]);
 
-        usernoEditText.setText(BackgroundTask.dbFields[0]);
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override
