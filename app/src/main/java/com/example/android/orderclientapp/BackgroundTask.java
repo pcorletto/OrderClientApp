@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -81,10 +82,24 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 bufferedWriter.close();
                 OS.close();
                 InputStream IS = httpURLConnection.getInputStream();
+
+                //***
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(IS,"iso-8859-1"));
+                String response = "";
+                String line = "";
+                while ((line = bufferedReader.readLine())!=null)
+                {
+                    response += line;
+                }
+
+                bufferedReader.close();
+                //***
+
                 IS.close();
                 //httpURLConnection.connect();
                 httpURLConnection.disconnect();
-                return "Registration Success...";
+                //return "Registration Success..";
+                return response;
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -188,6 +203,16 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
 
         Log.v("TAG", result);
+
+        if(result.equals("That username already exists"))
+        {
+            // If the username you are trying to register is already
+            // taken, alert the user
+            Log.e("TAG", "That username already exists");
+            Toast.makeText(ctx, "That username already exists!!!", Toast.LENGTH_LONG).show();
+
+
+        }
 
         if(result.equals("Login Failed.......Try Again.."))
         {
