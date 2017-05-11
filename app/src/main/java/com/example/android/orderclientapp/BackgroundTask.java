@@ -211,6 +211,14 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             Log.e("TAG", "That username already exists");
             Toast.makeText(ctx, "That username already exists!!!", Toast.LENGTH_LONG).show();
 
+        }
+
+        if(result.equals("That email address is already taken"))
+        {
+            // If the email address you are trying to use is already
+            // taken, alert the user
+            Log.e("TAG", "That email address is already taken");
+            Toast.makeText(ctx, "That email address is already taken", Toast.LENGTH_LONG).show();
 
         }
 

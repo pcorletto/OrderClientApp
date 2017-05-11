@@ -78,6 +78,29 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="@string/confirm_password"
+            android:id="@+id/confPasswordTxtV"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/confPasswordEdTxt"
+            android:inputType="textPassword"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout3"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/layout4">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="@string/email"
             android:id="@+id/emailTxtV"/>
 
@@ -93,10 +116,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout3"
+        android:layout_below="@+id/layout4"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/layout4">
+        android:id="@+id/layout5">
 
         <TextView
             android:layout_width="wrap_content"
@@ -116,10 +139,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout4"
+        android:layout_below="@+id/layout5"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/layout5">
+        android:id="@+id/layout6">
 
         <TextView
             android:layout_width="wrap_content"
@@ -138,10 +161,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout5"
+        android:layout_below="@+id/layout6"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/layout6">
+        android:id="@+id/layout7">
 
         <TextView
             android:layout_width="wrap_content"
@@ -161,10 +184,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout6"
+        android:layout_below="@+id/layout7"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/layout7">
+        android:id="@+id/layout8">
 
         <TextView
             android:layout_width="wrap_content"
@@ -183,28 +206,6 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:id="@+id/layout8">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/state"
-            android:id="@+id/stateTxtV"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/stateEdTxt"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:layout_below="@+id/layout8"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -213,13 +214,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/zipcode"
-            android:id="@+id/zipcodeTxtV"/>
+            android:text="@string/state"
+            android:id="@+id/stateTxtV"/>
 
-        <EditText
-            android:layout_width="match_parent"
+        <Spinner
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/zipcodeEdTxt"/>
+            android:id="@+id/states_spinner"/>
 
     </LinearLayout>
 
@@ -231,6 +232,29 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:id="@+id/layout10">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/zipcode"
+            android:id="@+id/zipcodeTxtV"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/zipcodeEdTxt"
+            android:inputType="number"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/layout10"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/layout11">
 
         <TextView
             android:layout_width="wrap_content"
@@ -250,10 +274,10 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout10"
+        android:layout_below="@+id/layout11"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/layout11">
+        android:id="@+id/layout12">
 
         <TextView
             android:layout_width="wrap_content"
@@ -272,13 +296,12 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/layout11"
+        android:layout_below="@+id/layout12"
         android:text="@string/register_button_lbl"
         android:id="@+id/register_btn"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"/>
-
 
 </RelativeLayout>
 
