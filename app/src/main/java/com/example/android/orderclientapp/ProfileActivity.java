@@ -90,7 +90,7 @@ public class ProfileActivity extends ActionBarActivity {
 
         int position = adapter.getPosition(BackgroundTask.dbFields[8]);
         states_spinner.setSelection(position);
-        
+
         mZipCodeEdTxt.setText(BackgroundTask.dbFields[9]);
         mTelephoneEdTxt.setText(BackgroundTask.dbFields[10]);
         mMobileEdTxt.setText(BackgroundTask.dbFields[11]);
