@@ -14,17 +14,22 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 
 public class ProfileActivity extends ActionBarActivity {
 
     public static EditText mFirstnameEdTxt, mLastnameEdTxt, mAddressEdTxt,
-    mCityEdTxt, mStateEdTxt, mZipCodeEdTxt, mTelephoneEdTxt, mMobileEdTxt, mEmailEdTxt;
+    mCityEdTxt, mZipCodeEdTxt, mTelephoneEdTxt, mMobileEdTxt, mEmailEdTxt;
 
     private String mUsername, mEmail, mFirstname, mLastname, mAddress,
             mCity, mState, mZipcode, mTelephone, mMobile;
+
+    Spinner states_spinner;
 
     private Button mLogoutButton, update_btn;
 
@@ -37,13 +42,37 @@ public class ProfileActivity extends ActionBarActivity {
         mLastnameEdTxt = (EditText) findViewById(R.id.lastnameEdTxt);
         mAddressEdTxt = (EditText) findViewById(R.id.addressEdTxt);
         mCityEdTxt = (EditText) findViewById(R.id.cityEdTxt);
-        mStateEdTxt = (EditText) findViewById(R.id.stateEdTxt);
         mZipCodeEdTxt = (EditText) findViewById(R.id.zipcodeEdTxt);
         mTelephoneEdTxt = (EditText) findViewById(R.id.telephoneEdTxt);
         mMobileEdTxt = (EditText) findViewById(R.id.mobileEdTxt);
         mEmailEdTxt = (EditText) findViewById(R.id.emailEdTxt);
         mLogoutButton = (Button) findViewById(R.id.logout_btn);
         update_btn = (Button) findViewById(R.id.update_btn);
+
+        states_spinner = (Spinner) findViewById(R.id.states_spinner);
+        // Create an ArrayAdapter using the string array and a default spinner layout
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
+                R.array.states, android.R.layout.simple_spinner_item);
+
+        // Specify the layout to use when the list of choices appears
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        // Apply the adapter to the spinner
+        states_spinner.setAdapter(adapter);
+
+        states_spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                mState = states_spinner.getSelectedItem().toString();
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         /* dbField indexes are: 0: Client ID, 1: username
             2: password, 3: First name, 4: Last name, 5: email address
@@ -58,7 +87,10 @@ public class ProfileActivity extends ActionBarActivity {
         mLastnameEdTxt.setText(BackgroundTask.dbFields[4]);
         mAddressEdTxt.setText(BackgroundTask.dbFields[6]);
         mCityEdTxt.setText(BackgroundTask.dbFields[7]);
-        mStateEdTxt.setText(BackgroundTask.dbFields[8]);
+
+        int position = adapter.getPosition(BackgroundTask.dbFields[8]);
+        states_spinner.setSelection(position);
+        
         mZipCodeEdTxt.setText(BackgroundTask.dbFields[9]);
         mTelephoneEdTxt.setText(BackgroundTask.dbFields[10]);
         mMobileEdTxt.setText(BackgroundTask.dbFields[11]);
@@ -139,20 +171,7 @@ public class ProfileActivity extends ActionBarActivity {
             }
         });
 
-        mStateEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
 
-                mStateEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mStateEdTxt, 0);
-                }
-                mStateEdTxt.setText("");
-
-                return true;
-            }
-        });
 
         mZipCodeEdTxt.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -224,7 +243,7 @@ public class ProfileActivity extends ActionBarActivity {
                 mEmail = mEmailEdTxt.getText().toString();
                 mAddress = mAddressEdTxt.getText().toString();
                 mCity = mCityEdTxt.getText().toString();
-                mState = mStateEdTxt.getText().toString();
+
                 mZipcode = mZipCodeEdTxt.getText().toString();
                 mTelephone = mTelephoneEdTxt.getText().toString();
                 mMobile = mMobileEdTxt.getText().toString();
@@ -262,13 +281,6 @@ public class ProfileActivity extends ActionBarActivity {
 
                 if(TextUtils.isEmpty(mCity)){
                     mCityEdTxt.setError(getString(R.string.empty_edittext_alert));
-                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
-                    return;
-                }
-
-                if(TextUtils.isEmpty(mState)){
-                    mStateEdTxt.setError(getString(R.string.empty_edittext_alert));
                     ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
                     toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                     return;

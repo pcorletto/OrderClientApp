@@ -126,10 +126,10 @@
             android:text="@string/state"
             android:id="@+id/stateTxtV"/>
 
-        <EditText
-            android:layout_width="match_parent"
+        <Spinner
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/stateEdTxt"/>
+            android:id="@+id/states_spinner"/>
 
     </LinearLayout>
 
