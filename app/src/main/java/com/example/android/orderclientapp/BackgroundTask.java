@@ -208,8 +208,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         {
             // If the username you are trying to register is already
             // taken, alert the user
-            Log.e("TAG", "That username already exists");
-            Toast.makeText(ctx, "That username already exists!!!", Toast.LENGTH_LONG).show();
+            Log.e("TAG", ctx.getString(R.string.username_taken));
+            Toast.makeText(ctx, ctx.getString(R.string.username_taken), Toast.LENGTH_LONG).show();
 
         }
 
@@ -217,25 +217,45 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         {
             // If the email address you are trying to use is already
             // taken, alert the user
-            Log.e("TAG", "That email address is already taken");
-            Toast.makeText(ctx, "That email address is already taken", Toast.LENGTH_LONG).show();
+            Log.e("TAG", ctx.getString(R.string.email_taken));
+            Toast.makeText(ctx, ctx.getString(R.string.email_taken), Toast.LENGTH_LONG).show();
 
         }
 
-        if(result.equals("Login Failed.......Try Again.."))
+        if(result.equals("Incorrect username"))
         {
-            // If the login info is incorrect, display a message
-            // like, incorrect username or password ...
-            Log.e("TAG", "Login Failed.......Try Again..");
-            //ProfileActivity.mFirstnameEdTxt.setText("Login Failed!");
-            LoginActivity.mUsernameEdTxt.setText("Incorrect username, or");
-            // Make password visible
-            LoginActivity.mPasswordEdTxt.setTransformationMethod(null);
-            LoginActivity.mPasswordEdTxt.setText("Incorrect password!");
+            // If the user name is incorrect, display a message
+            // like, incorrect username ...
+            Log.e("TAG", ctx.getString(R.string.incorrect_un));
+
+            Toast.makeText(ctx, ctx.getString(R.string.incorrect_un), Toast.LENGTH_LONG).show();
+
+            LoginActivity.mUsernameEdTxt.setText(ctx.getString(R.string.incorrect_un));
+
             LoginActivity.spinner.setVisibility(View.GONE);
 
+            return;
+
 
         }
+
+        else if(result.equals("Incorrect password"))
+        {
+            // If the password is incorrect, display a message
+            // like, incorrect password ...
+            Log.e("TAG", ctx.getString(R.string.incorrect_pw));
+
+            Toast.makeText(ctx, ctx.getString(R.string.incorrect_pw), Toast.LENGTH_LONG).show();
+
+            LoginActivity.mUsernameEdTxt.setText(ctx.getString(R.string.incorrect_pw));
+
+            LoginActivity.spinner.setVisibility(View.GONE);
+
+            return;
+        }
+
+
+
         else // If we get a result row from the PhP array...
         {
             int i= 0;

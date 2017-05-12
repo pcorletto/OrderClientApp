@@ -21,7 +21,7 @@ public class MainActivity extends ActionBarActivity {
 
     private String mLanguagePreference;
 
-    private Button mRegister_btn, mLogin_btn, mStore_catalog_btn, mMy_Orders_btn;
+    private Button mRegister_btn, mLogin_btn, mStore_catalog_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +31,6 @@ public class MainActivity extends ActionBarActivity {
         mRegister_btn = (Button) findViewById(R.id.register_btn);
         mLogin_btn = (Button) findViewById(R.id.login_btn);
         mStore_catalog_btn = (Button) findViewById(R.id.store_catalog_btn);
-        mMy_Orders_btn = (Button) findViewById(R.id.my_orders_btn);
 
         // Retrieve any previous reading stored on the SharedPreferences file
 

@@ -96,11 +96,6 @@
             android:text="@string/store_catalog_button_lbl"
             android:id="@+id/store_catalog_btn"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/my_orders_button_lbl"
-            android:id="@+id/my_orders_btn"/>
     </LinearLayout>
 
 

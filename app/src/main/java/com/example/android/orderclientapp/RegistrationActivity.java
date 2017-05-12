@@ -168,11 +168,11 @@ public class RegistrationActivity extends ActionBarActivity {
                 // If the password is less than eight characters long, alert the user
                 if(mPassword.length()<8){
 
-                    mPasswordEdTxt.setError("Choose a password 8 characters or longer!");
+                    mPasswordEdTxt.setError(getString(R.string.short_pw));
                     ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
                     toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
 
-                    Toast.makeText(getApplicationContext(), "Choose a password 8 characters or longer!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.short_pw), Toast.LENGTH_LONG).show();
 
                     return;
 
@@ -182,11 +182,11 @@ public class RegistrationActivity extends ActionBarActivity {
                 // issue an alert
 
                 if(!mPassword.equals(mConfPassword)){
-                    mConfPasswordEdTxt.setError("The entered passwords do not match! Try again!");
+                    mConfPasswordEdTxt.setError(getString(R.string.pw_mismatch));
                     ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
                     toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
 
-                    Toast.makeText(getApplicationContext(), "The entered passwords do not match! Try again!", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.pw_mismatch), Toast.LENGTH_LONG).show();
 
                     return;
                 }
