@@ -1,6 +1,5 @@
 package com.example.android.orderclientapp;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.media.AudioManager;
@@ -10,10 +9,8 @@ import android.support.v7.app.ActionBarActivity;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -95,143 +92,6 @@ public class ProfileActivity extends ActionBarActivity {
         mTelephoneEdTxt.setText(BackgroundTask.dbFields[10]);
         mMobileEdTxt.setText(BackgroundTask.dbFields[11]);
         mEmailEdTxt.setText(BackgroundTask.dbFields[5]);
-
-        mFirstnameEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mFirstnameEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mFirstnameEdTxt, 0);
-                }
-                mFirstnameEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-        mLastnameEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mLastnameEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mLastnameEdTxt, 0);
-                }
-                mLastnameEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-        mFirstnameEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mFirstnameEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mFirstnameEdTxt, 0);
-                }
-                mFirstnameEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-        mAddressEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mAddressEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mAddressEdTxt, 0);
-                }
-                mAddressEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-        mCityEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mCityEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mCityEdTxt, 0);
-                }
-                mCityEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-
-
-        mZipCodeEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mZipCodeEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mZipCodeEdTxt, 0);
-                }
-                mZipCodeEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-        mTelephoneEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mTelephoneEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mTelephoneEdTxt, 0);
-                }
-                mTelephoneEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-        mMobileEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mMobileEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mMobileEdTxt, 0);
-                }
-                mMobileEdTxt.setText("");
-
-                return true;
-            }
-        });
-
-        mEmailEdTxt.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                mEmailEdTxt.requestFocus();
-                InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
-                if(imm != null) {
-                    imm.showSoftInput(mEmailEdTxt, 0);
-                }
-                mEmailEdTxt.setText("");
-
-                return true;
-            }
-        });
 
         update_btn.setOnClickListener(new View.OnClickListener() {
             @Override

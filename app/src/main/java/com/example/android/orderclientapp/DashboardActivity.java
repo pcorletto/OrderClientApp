@@ -43,6 +43,17 @@ public class DashboardActivity extends ActionBarActivity {
             }
         });
 
+        catalogButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(DashboardActivity.this, CatalogActivity.class);
+                startActivity(intent);
+                finish();
+
+            }
+        });
+
         logout_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

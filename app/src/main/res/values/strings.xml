@@ -50,4 +50,6 @@
     <string name="email_taken">That email address is already taken</string>
     <string name="short_pw">Choose a password 8 characters or longer!</string>
     <string name="pw_mismatch">The entered passwords do not match! Try again!</string>
+    <string name="title_activity_catalog">CatalogActivity</string>
+
 </resources>

@@ -33,6 +33,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     String method;
 
+    String testString;
+
 
     @Override
     protected void onPreExecute() {
@@ -44,6 +46,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         String reg_url = "http://corlettostore.000webhostapp.com/register.php";
         String login_url = "http://corlettostore.000webhostapp.com/login.php";
         String update_url = "http://corlettostore.000webhostapp.com/update.php";
+        String catalog_url = "http://corlettostore.000webhostapp.com/catalog.php";
+
         method = params[0];
         if (method.equals("register")) {
             String username = params[1];
@@ -190,6 +194,46 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 e.printStackTrace();
             }
         }
+
+        else if(method.equals("catalog"))
+        {
+            //String username = params[1];
+            //String password = params[2];
+            try {
+                URL url = new URL(catalog_url);
+                HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
+                httpURLConnection.setRequestMethod("GET");
+                httpURLConnection.setDoOutput(true);
+                httpURLConnection.setDoInput(true);
+                //OutputStream outputStream = httpURLConnection.getOutputStream();
+                //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream,"UTF-8"));
+                //String data = URLEncoder.encode("username","UTF-8")+"="+URLEncoder.encode(username,"UTF-8")+"&"+
+                  //      URLEncoder.encode("password","UTF-8")+"="+URLEncoder.encode(password,"UTF-8");
+                //bufferedWriter.write(data);
+                //bufferedWriter.flush();
+                //bufferedWriter.close();
+                //outputStream.close();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream,"iso-8859-1"));
+                String response = "";
+                String line = "";
+                while ((line = bufferedReader.readLine())!=null)
+                {
+                    response += line;
+                }
+
+                bufferedReader.close();
+                inputStream.close();
+                httpURLConnection.disconnect();
+                return response;
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         return null;
     }
     @Override
@@ -254,8 +298,6 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
             return;
         }
 
-
-
         else // If we get a result row from the PhP array...
         {
             int i= 0;
@@ -281,6 +323,8 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                     dbFields[q] = newString;
                     q++;
                     Log.e("TAG" + i, newString);
+
+                    testString += newString + "\n";
                 }
 
                 i++;
@@ -298,6 +342,12 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 Intent intent = new Intent(ctx, DashboardActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 ctx.startActivity(intent);
+
+            }
+
+            if(method.equals("catalog")) {
+
+                Toast.makeText(ctx, testString, Toast.LENGTH_LONG).show();
 
             }
 

@@ -58,6 +58,14 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.android.orderclientapp.LoginActivity" />
         </activity>
+        <activity
+            android:name=".CatalogActivity"
+            android:label="@string/title_activity_catalog"
+            android:parentActivityName=".DashboardActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.android.orderclientapp.DashboardActivity" />
+        </activity>
     </application>
 
 </manifest>
