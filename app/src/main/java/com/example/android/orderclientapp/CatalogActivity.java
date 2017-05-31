@@ -1,22 +1,29 @@
 package com.example.android.orderclientapp;
 
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
 
 
 public class CatalogActivity extends ActionBarActivity {
+
+    public static ImageView imageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_catalog);
 
+        imageView = (ImageView) findViewById(R.id.imageView);
+
         String method = "catalog";
 
         BackgroundTask backgroundTask = new BackgroundTask(getApplicationContext());
         backgroundTask.execute(method);
+
+
     }
 
 

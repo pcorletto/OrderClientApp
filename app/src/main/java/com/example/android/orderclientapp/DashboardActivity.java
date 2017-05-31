@@ -30,8 +30,9 @@ public class DashboardActivity extends ActionBarActivity {
 
         logout_btn = (Button) findViewById(R.id.logout_btn);
 
-        loginEditText.setText(BackgroundTask.dbFields[1]);
+        //Toast.makeText(this, BackgroundTask.dbFields[1], Toast.LENGTH_LONG).show();
 
+        //loginEditText.setText(BackgroundTask.dbFields[1]);
 
         profileButton.setOnClickListener(new View.OnClickListener() {
             @Override

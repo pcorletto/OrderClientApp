@@ -3,13 +3,17 @@ package com.example.android.orderclientapp;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -35,11 +39,15 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
     String testString;
 
+    Bitmap bitmap;
+
 
     @Override
     protected void onPreExecute() {
         alertDialog = new AlertDialog.Builder(ctx).create();
         alertDialog.setTitle("Login Information....");
+
+        bitmap = BitmapFactory.decodeResource(ctx.getResources(), R.drawable.shirt);
     }
     @Override
     protected String doInBackground(String... params) {
@@ -199,6 +207,7 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
         {
             //String username = params[1];
             //String password = params[2];
+
             try {
                 URL url = new URL(catalog_url);
                 HttpURLConnection httpURLConnection = (HttpURLConnection)url.openConnection();
@@ -225,17 +234,52 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
                 bufferedReader.close();
                 inputStream.close();
                 httpURLConnection.disconnect();
-                return response;
+
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                byte[] b = baos.toByteArray();
+
+                String encodeImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+                //return encodeImage;
+                //return response;
+
+                String test = "";
+                int count = 0;
+                while(count < response.length())
+
+                {
+                    test += response.charAt(count);
+
+                    if((count % 76 == 0)&&(count >0))
+                    {
+                        test += "\n";
+                    }
+
+                    count++;
+                }
+
+                return test;
+
+
+
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
+
+
         }
 
 
         return null;
+
+
     }
+
+
     @Override
     protected void onProgressUpdate(Void... values) {
         super.onProgressUpdate(values);
@@ -347,7 +391,18 @@ public class BackgroundTask extends AsyncTask<String,Void,String> {
 
             if(method.equals("catalog")) {
 
-                Toast.makeText(ctx, testString, Toast.LENGTH_LONG).show();
+                String[] safe = result.split("=");
+
+
+                Toast.makeText(ctx, result, Toast.LENGTH_LONG).show();
+
+                byte[] decodeString = Base64.decode(safe[0], Base64.NO_PADDING);
+                Bitmap decoded = BitmapFactory.decodeByteArray(decodeString, 0, decodeString.length);
+                CatalogActivity.imageView.setImageBitmap(decoded);
+
+
+
+
 
             }
 
