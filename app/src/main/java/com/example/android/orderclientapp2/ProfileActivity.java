@@ -1,6 +1,7 @@
-package com.example.android.orderclientapp;
+package com.example.android.orderclientapp2;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.ToneGenerator;
 import android.os.Bundle;
@@ -9,44 +10,41 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 
-public class RegistrationActivity extends ActionBarActivity {
+public class ProfileActivity extends ActionBarActivity {
 
-    // Private member variables...
-    private EditText mUsernameEdTxt, mPasswordEdTxt, mConfPasswordEdTxt, mEmailEdTxt, mFirstnameEdTxt,
-    mLastnameEdTxt, mAddressEdTxt, mCityEdTxt, mZipcodeEdTxt, mTelephoneEdTxt,
-    mMobileEdTxt;
+    public static EditText mFirstnameEdTxt, mLastnameEdTxt, mAddressEdTxt,
+    mCityEdTxt, mZipCodeEdTxt, mTelephoneEdTxt, mMobileEdTxt, mEmailEdTxt;
 
-    private String mUsername, mPassword, mConfPassword, mEmail, mFirstname, mLastname, mAddress,
+    private String mUsername, mEmail, mFirstname, mLastname, mAddress,
             mCity, mState, mZipcode, mTelephone, mMobile;
 
     Spinner states_spinner;
 
-    private Button mRegisterBtn;
+    private Button mLogoutButton, update_btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registration);
+        setContentView(R.layout.activity_profile);
 
-        mUsernameEdTxt = (EditText) findViewById(R.id.usernameEdTxt);
-        mPasswordEdTxt = (EditText) findViewById(R.id.passwordEdTxt);
-        mConfPasswordEdTxt = (EditText) findViewById(R.id.confPasswordEdTxt);
-        mEmailEdTxt = (EditText) findViewById(R.id.emailEdTxt);
         mFirstnameEdTxt = (EditText) findViewById(R.id.firstnameEdTxt);
         mLastnameEdTxt = (EditText) findViewById(R.id.lastnameEdTxt);
         mAddressEdTxt = (EditText) findViewById(R.id.addressEdTxt);
         mCityEdTxt = (EditText) findViewById(R.id.cityEdTxt);
-        mZipcodeEdTxt = (EditText) findViewById(R.id.zipcodeEdTxt);
+        mZipCodeEdTxt = (EditText) findViewById(R.id.zipcodeEdTxt);
         mTelephoneEdTxt = (EditText) findViewById(R.id.telephoneEdTxt);
         mMobileEdTxt = (EditText) findViewById(R.id.mobileEdTxt);
+        mEmailEdTxt = (EditText) findViewById(R.id.emailEdTxt);
+        mLogoutButton = (Button) findViewById(R.id.logout_btn);
+        update_btn = (Button) findViewById(R.id.update_btn);
 
         states_spinner = (Spinner) findViewById(R.id.states_spinner);
         // Create an ArrayAdapter using the string array and a default spinner layout
@@ -73,40 +71,45 @@ public class RegistrationActivity extends ActionBarActivity {
             }
         });
 
-        mRegisterBtn = (Button) findViewById(R.id.register_btn);
+        /* dbField indexes are: 0: Client ID, 1: username
+            2: password, 3: First name, 4: Last name, 5: email address
+            6: address, 7: Town, 8: State, 9: Zip code
+            10: Home phone, 11: Cell phone
+             */
 
-        mRegisterBtn.setOnClickListener(new View.OnClickListener() {
+        // Hide the keyboard upon launching the activity
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
+
+        mFirstnameEdTxt.setText(BackgroundTask.dbFields[3]);
+        mLastnameEdTxt.setText(BackgroundTask.dbFields[4]);
+        mAddressEdTxt.setText(BackgroundTask.dbFields[6]);
+        mCityEdTxt.setText(BackgroundTask.dbFields[7]);
+
+        int position = adapter.getPosition(BackgroundTask.dbFields[8]);
+        states_spinner.setSelection(position);
+
+        mZipCodeEdTxt.setText(BackgroundTask.dbFields[9]);
+        mTelephoneEdTxt.setText(BackgroundTask.dbFields[10]);
+        mMobileEdTxt.setText(BackgroundTask.dbFields[11]);
+        mEmailEdTxt.setText(BackgroundTask.dbFields[5]);
+
+        update_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                mUsername = mUsernameEdTxt.getText().toString();
-                mPassword = mPasswordEdTxt.getText().toString();
-                mConfPassword = mConfPasswordEdTxt.getText().toString();
-                mEmail = mEmailEdTxt.getText().toString();
+                mUsername = BackgroundTask.dbFields[1];
                 mFirstname = mFirstnameEdTxt.getText().toString();
                 mLastname = mLastnameEdTxt.getText().toString();
+                mEmail = mEmailEdTxt.getText().toString();
                 mAddress = mAddressEdTxt.getText().toString();
                 mCity = mCityEdTxt.getText().toString();
-                mZipcode = mZipcodeEdTxt.getText().toString();
+
+                mZipcode = mZipCodeEdTxt.getText().toString();
                 mTelephone = mTelephoneEdTxt.getText().toString();
                 mMobile = mMobileEdTxt.getText().toString();
 
                 // Validate user's input. If the user skips one of the entries,
                 // then alert them to enter it.
-
-                if(TextUtils.isEmpty(mUsername)){
-                    mUsernameEdTxt.setError(getString(R.string.empty_edittext_alert));
-                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
-                    return;
-                }
-
-                if(TextUtils.isEmpty(mPassword)){
-                    mPasswordEdTxt.setError(getString(R.string.empty_edittext_alert));
-                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
-                    return;
-                }
 
                 if(TextUtils.isEmpty(mEmail)){
                     mEmailEdTxt.setError(getString(R.string.empty_edittext_alert));
@@ -143,9 +146,8 @@ public class RegistrationActivity extends ActionBarActivity {
                     return;
                 }
 
-
                 if(TextUtils.isEmpty(mZipcode)){
-                    mZipcodeEdTxt.setError(getString(R.string.empty_edittext_alert));
+                    mZipCodeEdTxt.setError(getString(R.string.empty_edittext_alert));
                     ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
                     toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
                     return;
@@ -165,49 +167,44 @@ public class RegistrationActivity extends ActionBarActivity {
                     return;
                 }
 
-                // If the password is less than eight characters long, alert the user
-                if(mPassword.length()<8){
-
-                    mPasswordEdTxt.setError(getString(R.string.short_pw));
-                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
-
-                    Toast.makeText(getApplicationContext(), getString(R.string.short_pw), Toast.LENGTH_LONG).show();
-
-                    return;
-
-                }
-
-                // If the confirmation password is different from the first entered password,
-                // issue an alert
-
-                if(!mPassword.equals(mConfPassword)){
-                    mConfPasswordEdTxt.setError(getString(R.string.pw_mismatch));
-                    ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100);
-                    toneG.startTone(ToneGenerator.TONE_SUP_CONGESTION, 200);
-
-                    Toast.makeText(getApplicationContext(), getString(R.string.pw_mismatch), Toast.LENGTH_LONG).show();
-
-                    return;
-                }
-
-                String method = "register";
+                String method = "update";
                 BackgroundTask backgroundTask = new BackgroundTask(getApplicationContext());
-                backgroundTask.execute(method, mUsername, mConfPassword, mFirstname, mLastname, mEmail,
+                backgroundTask.execute(method, mUsername, mFirstname, mLastname, mEmail,
                         mAddress, mCity, mState, mZipcode, mTelephone, mMobile);
 
-                Intent intent = new Intent(RegistrationActivity.this, MainActivity.class);
+                Intent intent = new Intent(ProfileActivity.this, MainActivity.class);
                 startActivity(intent);
+
+            }
+        });
+
+        mLogoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                SharedPreferences SM = getSharedPreferences(getString(R.string.login_tracker), 0);
+                SharedPreferences.Editor edit = SM.edit();
+                edit.putBoolean(getString(R.string.userlogin), false);
+                edit.commit();
+
+                Intent intent = new Intent(ProfileActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
     }
 
+    @Override
+    public void onBackPressed() {
+        finish();
+        //super.onBackPressed();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_registration, menu);
+        getMenuInflater().inflate(R.menu.menu_profile, menu);
         return true;
     }
 

@@ -1,4 +1,4 @@
-package com.example.android.orderclientapp;
+package com.example.android.orderclientapp2;
 
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.android.orderclientapp" >
+    package="com.example.android.orderclientapp2" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -24,7 +24,7 @@
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.orderclientapp.MainActivity" />
+                android:value="com.example.android.orderclientapp2.MainActivity" />
         </activity>
         <activity
             android:name=".BackgroundTask"
@@ -32,7 +32,7 @@
             android:parentActivityName=".RegistrationActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.orderclientapp.RegistrationActivity" />
+                android:value="com.example.android.orderclientapp2.RegistrationActivity" />
         </activity>
         <activity
             android:name=".LoginActivity"
@@ -40,7 +40,7 @@
             android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.orderclientapp.MainActivity" />
+                android:value="com.example.android.orderclientapp2.MainActivity" />
         </activity>
         <activity
             android:name=".ProfileActivity"
@@ -48,7 +48,7 @@
             android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.orderclientapp.LoginActivity" />
+                android:value="com.example.android.orderclientapp2.LoginActivity" />
         </activity>
         <activity
             android:name=".DashboardActivity"
@@ -56,7 +56,7 @@
             android:parentActivityName=".LoginActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.orderclientapp.LoginActivity" />
+                android:value="com.example.android.orderclientapp2.LoginActivity" />
         </activity>
         <activity
             android:name=".CatalogActivity"
@@ -64,7 +64,7 @@
             android:parentActivityName=".DashboardActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.android.orderclientapp.DashboardActivity" />
+                android:value="com.example.android.orderclientapp2.DashboardActivity" />
         </activity>
     </application>
 
